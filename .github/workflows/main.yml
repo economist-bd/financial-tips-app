@@ -1,41 +1,21 @@
-name: Build Flutter APK
+name: financial_tips_app
+description: A new Flutter project.
+publish_to: 'none'
 
-on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
+version: 1.0.0+1
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+environment:
+  sdk: '>=3.0.0 <4.0.0'
 
-    steps:
-      - uses: actions/checkout@v4
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '17'
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.19.0'
-          channel: 'stable'
-
-      # এই লাইনটি আপনার মিসিং ফাইলগুলো ঠিক করে দেবে
-      - name: Recreate Android Files
-        run: flutter create .
-
-      - name: Install Dependencies
-        run: flutter pub get
-
-      - name: Build APK
-        run: flutter build apk --release --no-tree-shake-icons
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+flutter:
+  uses-material-design: true
