@@ -24,9 +24,9 @@ jobs:
           flutter-version: '3.19.0'
           channel: 'stable'
 
-      # এই লাইনটি আপনার মিসিং ফাইলগুলো ঠিক করে দেবে
+      # এই লাইনে আমি --project-name যুক্ত করেছি যাতে আর এরর না আসে
       - name: Recreate Android Files
-        run: flutter create .
+        run: flutter create --project-name financial_tips_app .
 
       - name: Install Dependencies
         run: flutter pub get
